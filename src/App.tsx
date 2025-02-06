@@ -4,16 +4,111 @@ import { Gap } from '@alfalab/core-components/gap';
 import { Typography } from '@alfalab/core-components/typography';
 import { useState } from 'react';
 import corner from './assets/corner.png';
+import doc from './assets/doc.png';
+import heart from './assets/heart.png';
+import house from './assets/house.png';
+import money from './assets/money.png';
+import spring from './assets/spring.png';
 import { LS, LSKeys } from './ls';
 import { appSt } from './style.css';
 import { ThxLayout } from './thx/ThxLayout';
 
+const fisrtSection = [
+  {
+    img: house,
+    title: 'Понять, когда инвестировать',
+    subtitle: 'ИИ анализирует рынок и подсказывает лучшие моменты для сделок',
+  },
+  {
+    img: money,
+    title: 'Экономить на комиссиях',
+    subtitle: 'Бесплатные сделки и снижение издержек увеличивают вашу прибыль',
+  },
+  {
+    img: doc,
+    title: 'Получать готовую аналитику',
+    subtitle: 'ИИ готовит выжимку новостей и экономит ваше время',
+  },
+  {
+    img: heart,
+    title: 'Не пропускать важные сигналы',
+    subtitle: 'У вас будет доступ к прогнозам и стратегиям экспертов',
+  },
+  {
+    img: spring,
+    title: 'Создать портфель под свои цели',
+    subtitle: 'ИИ подбирает активы, соответствующие вашей стратегии',
+  },
+];
+
+const secondSection = [
+  {
+    icon: 'glyph_robot_m',
+    title: 'Ассистент по анализу рынка',
+    subtitle: 'ИИ анализирует рынок и подсказывает, как действовать',
+  },
+  {
+    icon: 'glyph_scales_m',
+    title: 'Балансировка портфеля',
+    subtitle: 'ИИ оценивает активы и даёт рекомендации по улучшению',
+  },
+  {
+    icon: 'glyph_briefcase_m',
+    title: 'Анализ изменения стоимости портфеля',
+    subtitle: 'ИИ найдёт причины и объяснит, почему меняется доходность',
+  },
+  {
+    icon: 'glyph_lightning_m',
+    title: 'Новости рынка в одном месте',
+    subtitle: 'Краткие сводки по трендам и событиям',
+  },
+  {
+    icon: 'glyph_bubble-lines_m',
+    title: 'Прогнозы по активу',
+    subtitle: 'ИИ сформирует прогноз на основе мнений инвесторов и аналитиков',
+  },
+  {
+    icon: 'glyph_piggy_m',
+    title: 'Доход с остатков',
+    subtitle: 'Зарабатывайте на свободных деньгах на брокерском счёте',
+  },
+  {
+    icon: 'glyph_percent_m',
+    title: 'Торговля без комиссии',
+    subtitle: 'До 10 сделок с акциями, облигациями и фондами бесплатно',
+  },
+  {
+    icon: 'glyph_bulb_m',
+    title: 'Инвест-инсайты',
+    subtitle: 'Получайте сигналы о действиях успешных инвесторов',
+  },
+  {
+    icon: 'glyph_chart-column-three-asc-arrow_m',
+    title: 'Эксклюзивная аналитика',
+    subtitle: 'Доступ к закрытым обзорам рынков и эмитентов',
+  },
+  {
+    icon: 'glyph_bubble-lines_m',
+    title: 'Закрытое сообщество',
+    subtitle: 'Общение с топовыми инвесторами, экспертами и аналитиками',
+  },
+];
+
+const PRICE_PER_MONTH = 249;
+const PRICE_PER_MONTH_ANNUAL = 199;
+
 export const App = () => {
   const [loading, setLoading] = useState(false);
   const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
+  const [selectedBtn, setSelectedBtn] = useState(PRICE_PER_MONTH);
 
   const submit = () => {
-    window.gtag('event', 'test_one_4182');
+    if (selectedBtn === PRICE_PER_MONTH) {
+      window.gtag('event', 'activate_one_4205_var1');
+    } else {
+      window.gtag('event', 'activate_one_4205_year_var1');
+    }
+
     setLoading(true);
     LS.setItem(LSKeys.ShowThx, true);
     setThx(true);
@@ -32,13 +127,12 @@ export const App = () => {
             PRO инвестиции
           </Typography.TitleResponsive>
           <div style={{ marginTop: '8px', maxWidth: '222px' }}>
-            <Typography.Text view="primary-small">Подписка, которая экономит ваши деньги и время</Typography.Text>
+            <Typography.Text view="primary-small">Подписка для умных инвестиций и выгодной торговли</Typography.Text>
           </div>
 
           <div className={appSt.tag}>
-            <CDNIcon className={appSt.calendar} name="glyph_calendar_m" />
             <Typography.Text view="primary-small" weight="bold">
-              30 дней
+              от 280₽ в месяц
             </Typography.Text>
           </div>
 
@@ -47,135 +141,73 @@ export const App = () => {
       </div>
       <div className={appSt.containerBox}>
         <Typography.TitleResponsive style={{ marginTop: '8px' }} tag="h2" view="small" font="system" weight="semibold">
-          Торговля с AI-помощником
+          С подпиской вы сможете
         </Typography.TitleResponsive>
 
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_robot_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Получить помощь от цифрового помощника
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Бот поможет проанализировать рынки и определить, как вам действовать сейчас
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_scales_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Узнайте, насколько сбалансирован ваш портфель
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Получайте быстрый анализ активов в портфеле и рекомендации по улучшению структуры портфеля
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_briefcase_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Поймите причины изменения стоимости портфеля
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              AI-саммаризатор объяснит основные драйверы изменений доходности портфеля
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_lightning_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Оцените быстро рыночную ситуацию
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              AI соберет краткую сводку по актуальным новостям и событиям, чтобы вы могли понять тренды за минуту
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_bubble-lines_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Получите быстро выжимку по активу
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              AI сформируют консенсус-прогноз по активу, основываясь на мнениях инвесторов и аналитиков по любому активу
-            </Typography.Text>
-          </div>
+        <div>
+          {fisrtSection.map(item => (
+            <div className={appSt.row} key={item.title}>
+              <img src={item.img} width={48} height={48} />
+
+              <div>
+                <Typography.Text tag="p" defaultMargins={false} view="primary-medium" weight="medium">
+                  {item.title}
+                </Typography.Text>
+                <Typography.Text view="primary-small" color="secondary">
+                  {item.subtitle}
+                </Typography.Text>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <Typography.TitleResponsive style={{ marginTop: '8px' }} tag="h2" view="small" font="system" weight="semibold">
-          Финансы
+        <Typography.TitleResponsive style={{ margin: '8px 0' }} tag="h2" view="small" font="system" weight="semibold">
+          Услуги в подписке
         </Typography.TitleResponsive>
 
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_piggy_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Зарабатывайте на остатке средств
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Получайте доход с остатков денежных средств на брокерском счете
-            </Typography.Text>
+        {secondSection.map(item => (
+          <div className={appSt.box} key={item.title}>
+            <CDNIcon name={item.icon} />
+            <div>
+              <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
+                {item.title}
+              </Typography.Text>
+              <Typography.Text view="primary-small" color="secondary">
+                {item.subtitle}
+              </Typography.Text>
+            </div>
           </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_percent_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Торгуйте без комиссии
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Совершайте до 10 сделок с акциями, облигациями или фондами без комиссии
-            </Typography.Text>
-          </div>
-        </div>
+        ))}
 
-        <Typography.TitleResponsive style={{ marginTop: '8px' }} tag="h2" view="small" font="system" weight="semibold">
-          Инсайты
-        </Typography.TitleResponsive>
-
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_bulb_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Узнавайте, куда инвестируют топовые трейдеры
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Получайте сигналы о действиях авторов успешных стратегий и топ-10 доходных инвесторов
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_chart-column-three-asc-arrow_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Доступ к эксклюзивной аналитике
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Читайте закрытые аналитические обзоры рынков, секторов и эмитентов
-            </Typography.Text>
-          </div>
-        </div>
-        <div className={appSt.box}>
-          <CDNIcon name="glyph_bubble-lines_m" />
-          <div>
-            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="bold">
-              Общайтесь с экспертами в закрытых сообществах
-            </Typography.Text>
-            <Typography.Text view="primary-small" color="secondary">
-              Узнавайте мнение профессиональных аналитиков и трейдеров первым
-            </Typography.Text>
-          </div>
-        </div>
-        <Gap size={96} />
+        <Gap size={128} />
       </div>
 
       <div className={appSt.bottomBtn}>
+        <div className={appSt.switcher}>
+          <button
+            className={appSt.btnSwitch({ nonactive: selectedBtn !== PRICE_PER_MONTH })}
+            onClick={() => setSelectedBtn(PRICE_PER_MONTH)}
+          >
+            <Typography.Text view="primary-small" weight="medium">
+              {PRICE_PER_MONTH}₽ в месяц
+            </Typography.Text>
+          </button>
+          <button
+            className={appSt.btnSwitch({ nonactive: selectedBtn !== PRICE_PER_MONTH_ANNUAL })}
+            onClick={() => setSelectedBtn(PRICE_PER_MONTH_ANNUAL)}
+          >
+            <Typography.Text tag="p" defaultMargins={false} view="primary-small" weight="medium">
+              {PRICE_PER_MONTH_ANNUAL}₽ в месяц
+            </Typography.Text>
+            <Typography.Text view="secondary-small">Оплата за год</Typography.Text>
+          </button>
+
+          <div className={appSt.chip}>
+            <Typography.Text view="secondary-small">-20%</Typography.Text>
+          </div>
+        </div>
         <ButtonMobile loading={loading} block view="primary" onClick={submit}>
-          Попробовать
+          Подключить за {selectedBtn === PRICE_PER_MONTH ? `${selectedBtn} ₽ в месяц` : `${selectedBtn * 12} ₽ в год`}
         </ButtonMobile>
       </div>
     </>

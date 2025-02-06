@@ -31,7 +31,7 @@ export const ThxLayout = () => {
           href="alfabank://investments"
           block
           view="secondary"
-          onClick={() => window.gtag('event', 'wait_one_4182')}
+          onClick={() => window.gtag('event', 'wait_one_4205_var1')}
         >
           Буду ждать
         </ButtonMobile>

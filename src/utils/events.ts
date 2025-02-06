@@ -6,9 +6,11 @@ declare global {
 }
 
 type Payload = {
-  trade: string[];
-  finance: string[];
+  benefit: string[];
   insight: string[];
+  tools: string[];
+  personal: string[];
+  premium: string[];
   id: number;
 };
 
@@ -20,11 +22,11 @@ export const sendDataToGA = async (payload: Payload) => {
     }-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
     await fetch(
-      'https://script.google.com/macros/s/AKfycbyNsI2FB5z5-0DFs2bH1gXfSaolHQzO1uDpg8SI7r9q32XSoN3IXeMjaDLJWFGZmI0x/exec',
+      'https://script.google.com/macros/s/AKfycbyn3L6FiX_gC8M6Ex9BKzKBKFRdqGo8ZFQb2B4rxDElz3nduj3FChwrKZSf4aiKok4I/exec',
       {
         redirect: 'follow',
         method: 'POST',
-        body: JSON.stringify({ date, ...payload, variant: 'variant1' }),
+        body: JSON.stringify({ date, ...payload, variant: 'forms' }),
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },
